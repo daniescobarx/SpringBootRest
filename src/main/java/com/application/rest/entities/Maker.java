@@ -26,4 +26,5 @@ public class Maker {
     @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Product> productList = new ArrayList<>();
 
+
 }
