@@ -1,5 +1,6 @@
 package com.application.rest.repository;
 
+import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,4 +16,5 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     List<Product> findProductByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 
+    List<Product> findByMaker(Maker maker);
 }

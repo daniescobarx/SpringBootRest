@@ -1,5 +1,6 @@
 package com.application.rest.service.impl;
 
+import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 import com.application.rest.persistence.IProductDAO;
 import com.application.rest.service.IProductService;
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements IProductService {
         return productDAO.findById(id);
     }
 
+
     @Override
     public List<Product> findByPriceInRange(BigDecimal minPrice, BigDecimal maxPrice) {
         return productDAO.findByPriceInRange(minPrice, maxPrice);
@@ -41,4 +43,17 @@ public class ProductServiceImpl implements IProductService {
     public void deleteById(Long id) {
         productDAO.deleteById(id);
     }
+
+    @Override
+    public List<Product> findByMaker(Maker maker) {
+        return productDAO.findByMaker(maker);
+    }
+
+
+    @Override
+    public long countProducts(){
+        return productDAO.countProducts();
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package com.application.rest.service;
 
+import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 
 import java.math.BigDecimal;
@@ -16,4 +17,6 @@ public interface IProductService {
 
     void deleteById(Long id);
 
+    long countProducts();
+    List<Product> findByMaker(Maker maker);
 }

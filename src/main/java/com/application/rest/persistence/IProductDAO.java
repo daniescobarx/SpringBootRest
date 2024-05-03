@@ -1,5 +1,6 @@
 package com.application.rest.persistence;
 
+import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 
 import java.math.BigDecimal;
@@ -16,4 +17,7 @@ public interface IProductDAO {
 
     void deleteById(Long id);
 
+    long countProducts();
+
+    List<Product> findByMaker(Maker maker);
 }

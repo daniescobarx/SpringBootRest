@@ -1,5 +1,6 @@
 package com.application.rest.persistence.impl;
 
+import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 import com.application.rest.persistence.IProductDAO;
 import com.application.rest.repository.ProductRepository;
@@ -40,4 +41,16 @@ public class ProductDAOImpl implements IProductDAO {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<Product> findByMaker(Maker maker){
+        return productRepository.findByMaker(maker);
+    }
+
+    @Override
+    public long countProducts(){
+        return productRepository.count();
+    }
+
+
 }

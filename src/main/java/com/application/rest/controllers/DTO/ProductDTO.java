@@ -22,4 +22,5 @@ public class ProductDTO {
     private String name;
     private BigDecimal price;
     private Maker maker;
+
 }
