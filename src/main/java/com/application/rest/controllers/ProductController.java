@@ -4,6 +4,7 @@ package com.application.rest.controllers;
 import com.application.rest.controllers.DTO.ProductDTO;
 import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
+import com.application.rest.service.IMakerService;
 import com.application.rest.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
+    @Autowired
+    private IMakerService makerService;
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
@@ -112,25 +115,33 @@ public class ProductController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/count")
+    @GetMapping("/countProducts")
     public ResponseEntity<Long> countProducts(){
         long totalProducts = productService.countProducts();
         return ResponseEntity.ok(totalProducts);
     }
 
     @GetMapping("/findByMaker")
-    public ResponseEntity<?> findByMaker(@RequestParam Maker maker){
-        List<ProductDTO> productList = productService.findByMaker(maker)
-                .stream()
-                .map(product -> ProductDTO.builder()
-                        .id(product.getId())
-                        .name(product.getName())
-                        .price(product.getPrice())
-                        .maker(product.getMaker())
-                        .build()
-                ).toList();
-        return ResponseEntity.ok(productList);
+    public ResponseEntity<?> findByMaker(@RequestParam Long makerId){
+        Optional<Maker> makerOptional = makerService.findById(makerId);
+
+        if (makerOptional.isPresent()) {
+            Maker maker = makerOptional.get();
+            List<ProductDTO> productList = productService.findByMaker(maker)
+                    .stream()
+                    .map(product -> ProductDTO.builder()
+                            .id(product.getId())
+                            .name(product.getName())
+                            .price(product.getPrice())
+                            .maker(product.getMaker())
+                            .build()
+                    ).toList();
+            return ResponseEntity.ok(productList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
 
 
