@@ -18,5 +18,6 @@ public interface IProductService {
     void deleteById(Long id);
 
     long countProducts();
+
     List<Product> findByMaker(Maker maker);
 }

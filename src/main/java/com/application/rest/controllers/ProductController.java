@@ -121,11 +121,12 @@ public class ProductController {
         return ResponseEntity.ok(totalProducts);
     }
 
+
     @GetMapping("/findByMaker")
     public ResponseEntity<?> findByMaker(@RequestParam Long makerId){
         Optional<Maker> makerOptional = makerService.findById(makerId);
 
-        if (makerOptional.isPresent()) {
+        if (makerOptional.isPresent()){
             Maker maker = makerOptional.get();
             List<ProductDTO> productList = productService.findByMaker(maker)
                     .stream()
@@ -137,12 +138,7 @@ public class ProductController {
                             .build()
                     ).toList();
             return ResponseEntity.ok(productList);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
-
-
-
-
 }
