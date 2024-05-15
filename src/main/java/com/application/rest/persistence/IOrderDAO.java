@@ -16,7 +16,7 @@ public interface IOrderDAO {
 
     void deleteById(Long id);
 
-//    List<Order> findByCustomerId(Long customerId);
+    List<Order> findByCustomerId(Long customerId);
 
     List<Order> findByDateRange(LocalDate startDate, LocalDate endDate);
 

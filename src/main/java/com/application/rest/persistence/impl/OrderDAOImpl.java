@@ -35,11 +35,11 @@ public class OrderDAOImpl implements IOrderDAO {
     public void deleteById(Long id) {
         orderRepository.deleteById(id);
     }
-//
-//    @Override
-//    public List<Order> findByCustomerId(Long customerId) {
-//        return orderRepository.findByProductId();
-//    }
+
+    @Override
+    public List<Order> findByCustomerId(Long customerId) {
+        return orderRepository.findByCustomer_Id(customerId);
+    }
 
     @Override
     public List<Order> findByDateRange(LocalDate startDate, LocalDate endDate) {

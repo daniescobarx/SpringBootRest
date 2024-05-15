@@ -58,11 +58,11 @@ public class OrderServiceImpl implements IOrderService {
     public void deleteById(Long id) {
         orderDAO.deleteById(id);
     }
-//
-//    @Override
-//    public List<Order> findByCustomerId(Long customerId) {
-//        return orderDAO.findByCustomerId(customerId);
-//    }
+
+    @Override
+    public List<Order> findByCustomerId(Long customerId) {
+        return orderDAO.findByCustomerId(customerId);
+    }
 
     @Override
     public List<Order> findByDateRange(LocalDate startDate, LocalDate endDate) {

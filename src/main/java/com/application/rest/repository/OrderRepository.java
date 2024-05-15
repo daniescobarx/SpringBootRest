@@ -16,4 +16,6 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     List<Order> findByProductId(@Param("productId") Long productId);
 
     List<Order> findByOrderDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Order> findByCustomer_Id(Long customerId);
+
 }
