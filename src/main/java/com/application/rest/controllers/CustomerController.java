@@ -2,6 +2,7 @@ package com.application.rest.controllers;
 
 import com.application.rest.controllers.DTO.CustomerDTO;
 import com.application.rest.entities.Customer;
+import com.application.rest.persistence.ICustomerDAO;
 import com.application.rest.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
+
+    @Autowired
+    private ICustomerDAO customerDAO;
 
     @Autowired
     private ICustomerService customerService;
@@ -40,7 +44,7 @@ public class CustomerController {
 
     @GetMapping("/findAll")
     public ResponseEntity<?> findAll(){
-        List<CustomerDTO> customerList = customerService.findAll()
+        List<CustomerDTO> customerList = customerDAO.findAll()
                 .stream()
                 .map(customer -> CustomerDTO.builder()
                         .id(customer.getId())
@@ -53,6 +57,8 @@ public class CustomerController {
         return ResponseEntity.ok(customerList);
     }
 
+    //* chegando null os dados
+    //http://localhost:8080/api/customer/save
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody CustomerDTO customerDTO) throws URISyntaxException{
         if (customerDTO.getName().isBlank()){
@@ -61,6 +67,8 @@ public class CustomerController {
 
         customerService.save(Customer.builder()
                 .name(customerDTO.getName())
+                .email(customerDTO.getEmail())
+                .address(customerDTO.getAddress())
                 .build()
         );
         return ResponseEntity.created(new URI("/api/customer/save")).build();
