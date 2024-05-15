@@ -14,6 +14,7 @@ public class MakerServiceImpl implements IMakerService {
 
     @Autowired
     private IMakerDAO makerDAO;
+
     @Override
     public List<Maker> findAll() {
         return makerDAO.findAll();
