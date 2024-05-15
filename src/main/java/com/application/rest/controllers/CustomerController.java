@@ -57,8 +57,6 @@ public class CustomerController {
         return ResponseEntity.ok(customerList);
     }
 
-    //* chegando null os dados
-    //http://localhost:8080/api/customer/save
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody CustomerDTO customerDTO) throws URISyntaxException{
         if (customerDTO.getName().isBlank()){

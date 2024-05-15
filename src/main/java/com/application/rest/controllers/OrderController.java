@@ -30,7 +30,7 @@ public class OrderController {
         return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/saveOrder")
     public ResponseEntity<Order> saveOrder(@RequestBody OrderDTO orderDTO) {
         Order order = orderService.saveOrder(orderDTO);
         return ResponseEntity.ok(order);
