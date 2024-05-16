@@ -6,6 +6,7 @@ import com.application.rest.persistence.IOrderDAO;
 import com.application.rest.service.IOrderService;
 import org.aspectj.weaver.ast.Or;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,12 +31,18 @@ public class OrderControllerTest {
     @Mock
     private IOrderService orderService;
 
+//    @BeforeEach
+//    public void setup(){
+//        MockitoAnnotations.initMocks(this);
+//    }
+
     @BeforeEach
-    public void setup(){
-        MockitoAnnotations.initMocks(this);
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
+    @DisplayName("Método FindAll - todos pedidos")
     public void testFindAll(){
         List<Order> orders = new ArrayList<>();
         when(orderService.findAll()).thenReturn(orders);
@@ -46,6 +53,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @DisplayName("Método findById - procurar por id")
     public void testFindById(){
         Long orderId = 1L;
         Order order = new Order();
@@ -59,6 +67,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @DisplayName("Método saveOrder - salvar pedido")
     public void testSaveOrder(){
         OrderDTO orderDTO = new OrderDTO();
         Order savedOrder = new Order();
@@ -71,6 +80,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @DisplayName("Método DeleteById - deletarPorId")
     public void testDeleteById(){
         Long orderId = 1L;
         ResponseEntity<Void> responseEntity = orderController.deleteById(orderId);
@@ -80,6 +90,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @DisplayName("Método FindByCustomerId - procurar pedido por id do cliente")
     public void testFindByCustomerId(){
         Long customerId = 1L;
         List<Order> orders = new ArrayList<>();
@@ -91,6 +102,7 @@ public class OrderControllerTest {
     }
 
     @Test
+    @DisplayName("Método findByDateRange - procurar por data")
     public void testFindByDateRange(){
         LocalDateTime startDateTime = LocalDateTime.now().minusDays(7);
         LocalDateTime endDateTime = LocalDateTime.now();
