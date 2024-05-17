@@ -4,6 +4,7 @@ import com.application.rest.controllers.DTO.ProductDTO;
 import com.application.rest.entities.Maker;
 import com.application.rest.entities.Product;
 import com.application.rest.service.IProductService;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.servlet.http.PushBuilder;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -102,6 +103,49 @@ class ProductControllerTest {
         Assertions.assertEquals(400, result.getStatusCode().value());
     }
 
+    @Test
+    public void update(){
+        ProductDTO productDTO = ProductDTO.builder().name("dani").build();
+        Long expectedId = 3L;
 
+        when(productService.findById(any())).thenReturn(Optional.empty());
+
+        ResponseEntity<?> result = productController.update(expectedId,productDTO);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(404, result.getStatusCode().value());
+    }
+
+
+    @Test
+    public void testDeleteById(){
+        Long expectedId = 2L;
+
+        doNothing().when(productService).deleteById(any());
+        ResponseEntity<?> result = productController.deleteById(expectedId);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(200, result.getStatusCode().value());
+        Assertions.assertEquals("Registro deletado", result.getBody().toString());
+    }
+
+    @Test
+    public void testNotDeleteById(){
+        Long expectedId = null;
+
+        ResponseEntity<?> result = productController.deleteById(expectedId);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(400, result.getStatusCode().value());
+    }
+
+    @Test
+    public void testCountProducts(){
+        long expectedCount = 3L;
+        when(productService.countProducts()).thenReturn(expectedCount);
+
+        ResponseEntity<Long> result = productController.countProducts();
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(200, result.getStatusCode().value());
+        Assertions.assertEquals(expectedCount, result.getBody());
+    }
 
 }
