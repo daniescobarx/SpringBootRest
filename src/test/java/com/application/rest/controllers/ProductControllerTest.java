@@ -97,8 +97,8 @@ class ProductControllerTest {
     public void testNotSave() throws URISyntaxException {
         doNothing().when(productService).save(any());
 
-        ProductDTO invalidProductDTO = ProductDTO.builder().build();
-        ResponseEntity<?> result = productController.save(invalidProductDTO);
+//        ProductDTO invalidProductDTO = ProductDTO.builder().build();
+        ResponseEntity<?> result = productController.save(ProductDTO.builder().name("").build());
         Assertions.assertNotNull(result);
         Assertions.assertEquals(400, result.getStatusCode().value());
     }

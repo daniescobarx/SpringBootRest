@@ -17,11 +17,20 @@ import java.util.Optional;
 @RequestMapping("/api/customer")
 public class CustomerController {
 
-    @Autowired
-    private ICustomerDAO customerDAO;
+    private final ICustomerDAO customerDAO;
+    private final ICustomerService customerService;
 
     @Autowired
-    private ICustomerService customerService;
+    public CustomerController(ICustomerDAO customerDAO, ICustomerService customerService) {
+        this.customerDAO = customerDAO;
+        this.customerService = customerService;
+    }
+
+//    @Autowired
+//    private ICustomerDAO customerDAO;
+//
+//    @Autowired
+//    private ICustomerService customerService;
 
     @GetMapping("/find/{id}")
     public ResponseEntity<?> findById(@PathVariable long id){
@@ -40,21 +49,6 @@ public class CustomerController {
             return ResponseEntity.ok(customerDTO);
         }
         return ResponseEntity.notFound().build();
-    }
-
-    @GetMapping("/findAll")
-    public ResponseEntity<?> findAll(){
-        List<CustomerDTO> customerList = customerDAO.findAll()
-                .stream()
-                .map(customer -> CustomerDTO.builder()
-                        .id(customer.getId())
-                        .name(customer.getName())
-                        .email(customer.getEmail())
-                        .address(customer.getAddress())
-                        .build()
-                ).toList();
-
-        return ResponseEntity.ok(customerList);
     }
 
     @PostMapping("/save")
