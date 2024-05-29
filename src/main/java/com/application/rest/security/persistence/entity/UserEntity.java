@@ -30,7 +30,7 @@ public class UserEntity {
 
     @Column(name = "account_No_Locked")
     private boolean credentialNoLocked;
-    
+
     @Column(name = "credential_No_Expired")
     private boolean credentialNoExpired;
 
