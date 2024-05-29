@@ -4,8 +4,6 @@ package com.application.rest.controllers;
 import com.application.rest.controllers.DTO.MakerDTO;
 import com.application.rest.entities.Maker;
 import com.application.rest.service.IMakerService;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.hibernate.mapping.Any;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.net.URISyntaxException;
 import java.sql.Array;

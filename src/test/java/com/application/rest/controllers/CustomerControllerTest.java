@@ -60,9 +60,9 @@ public class CustomerControllerTest {
     public void testSave() throws URISyntaxException {
         CustomerDTO customerDTO = CustomerDTO.builder()
                 .id(1L)
-                .name("John Doe")
-                .email("john.doe@example.com")
-                .address("123 Street, City")
+                .name("janaina")
+                .email("janaina.doe@example.com")
+                .address("Rua dois, 3")
                 .build();
 
         doNothing().when(customerService).save(any());

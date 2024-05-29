@@ -31,11 +31,6 @@ public class OrderControllerTest {
     @Mock
     private IOrderService orderService;
 
-//    @BeforeEach
-//    public void setup(){
-//        MockitoAnnotations.initMocks(this);
-//    }
-
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
