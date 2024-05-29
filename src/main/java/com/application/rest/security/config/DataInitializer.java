@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
 import java.util.Set;
 
 @Configuration
@@ -76,6 +77,7 @@ public class DataInitializer {
                     .credentialNoLocked(true)
                     .build();
 
+            userRepository.saveAll(List.of(userFredy, userPaula, userDani));
         };
     }
 }
