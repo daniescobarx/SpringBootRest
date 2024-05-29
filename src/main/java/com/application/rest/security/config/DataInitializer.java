@@ -3,6 +3,7 @@ package com.application.rest.security.config;
 import com.application.rest.security.persistence.entity.PermissionEntity;
 import com.application.rest.security.persistence.entity.RoleEntity;
 import com.application.rest.security.persistence.entity.RoleEnum;
+import com.application.rest.security.persistence.entity.UserEntity;
 import com.application.rest.security.persistence.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +46,34 @@ public class DataInitializer {
             RoleEntity roleCustomer = RoleEntity.builder()
                     .roleEnum(RoleEnum.CUSTOMER)
                     .permissionList(Set.of(createPemission))
+                    .build();
+
+            //users
+            UserEntity userFredy = UserEntity.builder()
+                    .username("fredy")
+                    .password(passwordEncoder.encode("123"))
+                    .isEnabled(true)
+                    .accountNoExpired(true)
+                    .credentialNoExpired(true)
+                    .credentialNoLocked(true)
+                    .build();
+
+            UserEntity userDani = UserEntity.builder()
+                    .username("dani")
+                    .password(passwordEncoder.encode("123"))
+                    .isEnabled(true)
+                    .accountNoExpired(true)
+                    .credentialNoExpired(true)
+                    .credentialNoLocked(true)
+                    .build();
+
+            UserEntity userPaula = UserEntity.builder()
+                    .username("paula")
+                    .password(passwordEncoder.encode("123"))
+                    .isEnabled(true)
+                    .accountNoExpired(true)
+                    .credentialNoExpired(true)
+                    .credentialNoLocked(true)
                     .build();
 
         };
