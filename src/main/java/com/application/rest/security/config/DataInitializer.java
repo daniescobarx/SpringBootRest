@@ -24,8 +24,11 @@ public class DataInitializer {
                     .name("UPDATE")
                     .build();
 
-            
+            PermissionEntity deletePermission = PermissionEntity.builder()
+                    .name("DELETE")
+                    .build();
 
+            
 
         };
     }
